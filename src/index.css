@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    font-family: 'Quicksand', sans-serif;
 }
+.bg-sky{
+    background-color: #a1dffb !important
+   
+  }
+  .golden{
+      color:rgb(230, 203, 31);
+   margin-left: 1rem !important;
+  }
+  .hero1{
+      animation: hero1 infinite 2s linear alternate; 
+   }
+.hero2{
+        animation: hero2 infinite 1.5s linear alternate;  }
+.hero3{
+            animation: hero3 infinite 2.5s linear alternate;  }
+.imageHero{
+    height: 3rem !important;
+}
+.h-results{
+    height:70vh !important;
+    overflow: auto;
+}
+.myTeam{
+    height: 100vh !important;
+}
+@keyframes hero1{
+    from{
+        transform: translateY(-0px);
+    }
+    to{
+        transform: translateY(200px);
+        opacity: 0;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    }
 }
+@keyframes hero2{
+    from{
+        transform: translateY(-0px);
+    }
+    to{
+        transform: translateY(200px);
+        opacity: 0;
+
+    }
+}
+@keyframes hero3{
+    from{
+        transform: translateY(-0px);
+    }
+    to{
+        transform: translateY(200px);
+        opacity: 0;
+
+    }
+}
+.cardHome{
+    border-radius: 2rem;
+    width: 90%;
+   background-color: rgba(240, 248, 255, 0.486);
+}
+.Login{
+    background-color: white
+}
+@media (min-width: 700px) { 
+    .responsiveLogin{
+        width: 40% !important;
+    }
+ }
+@media (min-width: 1000px) and (orientation: landscape) { 
+    .responsiveLogin{
+        width: 31% !important;
+    }
+ }

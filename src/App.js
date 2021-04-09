@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import './index.css';
+import {Header} from "./Header" ;
+import {Home} from "./Home"
+import {MyTeam} from "./MyTeamOfHeroes"
+import {Login} from "./Login"
+import React from 'react'
+import {TeamContext} from "./context/teamHeroes";
+import {isAuth} from "./context/isAuth";
 
 function App() {
+  const [team,setTeam]= React.useState([])
+  const [auth,setAuth]= React.useState([])
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <TeamContext.Provider value={{team,setTeam}}>
+      <isAuth.Provider value={{auth,setAuth}}>
+    <div  className="bg-sky App">
+      <Router>
+      
+      <Switch>
+      <Route path="/" exact>
+      <Header/>
+            <Home />
+
+          </Route>
+          <Route path="/myTeam">
+      <Header/>
+
+            <MyTeam />
+          </Route>
+          <Route path="/Login">
+            <Login />
+          </Route>
+      </Switch>
+      </Router>
     </div>
+    </ isAuth.Provider>
+    </TeamContext.Provider>
   );
 }
 
