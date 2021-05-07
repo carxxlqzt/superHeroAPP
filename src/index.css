@@ -23,8 +23,28 @@
     height:70vh !important;
     overflow: auto;
 }
+.bg-header{
+    background-color: #00DBDE;
+background-image: linear-gradient(180deg, #00DBDE 0%, #ce78ff 100%);
+
+}
+.lila{
+    background-color: #5d2d79;
+}
+.bg-btn{
+    background-image: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
+}
+.bg-lightblue{
+ background-image: linear-gradient(45deg, #d4e43f 0%, #1fb8d3 100%);
+}
 .myTeam{
     height: 100vh !important;
+}
+.power{
+    font-size: 10rem;
+}
+.icon-height{
+    font-size:5rem;
 }
 @keyframes hero1{
     from{
@@ -73,4 +93,47 @@
     .responsiveLogin{
         width: 31% !important;
     }
+ }
+ .error{
+     color:red;
+    
+     animation: error 1s linear 
+ }
+ @keyframes error {
+     from{
+         transform:scale(1)
+     }
+     to{
+         transform: scale(2)
+     }
+ }
+ .add{
+     z-index: 4 !important;
+     position: absolute;
+ }
+ .heroIcon{
+     width: 7rem;
+     position: absolute;
+     bottom: 20%;
+     left: 27%;
+ }
+ @media (min-width: 1000px) and (orientation: landscape) { 
+    .heroIcon{
+
+        position: absolute;
+        bottom: 20%;
+        left: 45%;
+    }
+ }
+ @media (min-width: 600px) and (max-width:1000px) { 
+    .heroIcon{
+
+        position: absolute;
+        bottom: 20%;
+        left: 39%;
+    }
+ }
+ .delete{
+     width:1rem;
+     height:2rem
  }

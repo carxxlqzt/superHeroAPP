@@ -1,12 +1,18 @@
 import React from 'react'
-import './index.css';
+import HeroIcon from '../img/hero-icon.png'
+import {motion} from 'framer-motion'
+
+import '../index.css';
 import {Container,Row,Col,Button,Modal} from 'react-bootstrap'
-import {TeamContext} from './context/teamHeroes'
-export const Team = () => {
-const {team} = React.useContext(TeamContext)
-const {setTeam} = React.useContext(TeamContext)
-const [show, setShow] = React.useState(false);
-  
+import {useDispatch,useSelector} from 'react-redux'
+import {deleteHero} from '../redux/ducks'
+
+ export const Team = () => {
+  const team = useSelector(store=>store.superheroes.myTeam)
+ const dispatch = useDispatch()
+  console.log(team)
+  const [show, setShow] = React.useState(false);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -38,52 +44,48 @@ return avg
 
 
 }
-// console.log(avgHeightWeight())
-
-const deleteHero=(hero)=>{
-    var contador =0;
-    var teamHeroes = team;
-    teamHeroes.map((sph,index)=>{
-            if(hero=== index){
-              teamHeroes.splice(contador,1)
-            }
-           return contador++
-    })
- return setTeam(teamHeroes)
-
-}
-
+     
 if( team.length=== 0 ){
-    return <div></div>
+    return <div>
+       <motion.img  initial={{y:-200, opacity:0}} animate={{y:-250,opacity:1}} transition={{delay:0.5,duration:0.9, yoyo:Infinity}} className='heroIcon' src={HeroIcon}></motion.img>
+    </div>
 } else{
    return <Container>
   <Row>
     <Col xs={6}>
-    <div className="card bg-danger text-light p-2">
-        <p> intelligence : {powerstats('intelligence')} </p>
+     
+    <div className="card bg-lightblue text-dark p-2">
+      <Row>
+        <Col  sm={6}> <p> intelligence : {powerstats('intelligence')} </p>
         <p> strength : {powerstats('strength')} </p>
         <p> speed : {powerstats('speed')} </p>
         <p> durability : {powerstats('durability')} </p>
         <p> power : {powerstats('power')} </p>
         <p> combat : {powerstats('combat')} </p>
-
+</Col>
+<Col className='d-none d-sm-inline' sm={6}><i className="fas fa-bolt power"></i></Col></Row>
     </div>
+    
     <div className="card mt-2">
-      <p> Average Height: {avgHeightWeight('height')}</p>
-      <p> Average Weight: {avgHeightWeight('weight')} </p>
- 
+      <Row className='p-2'>
+        <Col>   <p> Average Height: {avgHeightWeight('height')}</p>
+      <p> Average Weight: {avgHeightWeight('weight')} </p></Col>
+
+      <Col className='d-none d-sm-inline'><i className="icon-height  fas fa-sort-numeric-up-alt"></i></Col>
+ </Row>
     </div>
     </Col>
     <Col xs={6}>
            <div>
-       {team.map((heroe,index) => {
-           return <div key={heroe.id} className=" w-100 border h-50  mb-2 p-2 d-flex justify-content-around flex-row">
+       {team.map((heroe) => {
+ return <div key={heroe.id} className=" w-100 border h-50  mb-2 p-2 d-flex justify-content-around flex-row">
    <img className="imageHero"  onClick={handleShow} src={heroe.image.url} alt={heroe.name} ></img> 
       <h3  onClick={handleShow} className="fs-5"> {heroe.name} </h3>
-       <Button onClick={()=>deleteHero(index)}  ><p >X</p></Button>  
+       <Button className='bg-danger delete d-flex justify-content-center m-0'onClick={()=>dispatch(deleteHero(heroe))}  > <p>X</p></Button>  
           <Modal show={show} onHide={handleClose}>
         
           <Modal.Body>
+            
           
              <div className="card" >
              <img src={heroe.image.url} className="card-img-top" alt="..."></img>
@@ -108,6 +110,7 @@ if( team.length=== 0 ){
          
         </Modal>
         </div>
+          
     
     
   
@@ -129,4 +132,7 @@ if( team.length=== 0 ){
        
   
 
+    
  }
+
+

@@ -1,24 +1,21 @@
 
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import './index.css';
-import {Header} from "./Header" ;
-import {Home} from "./Home"
-import {MyTeam} from "./MyTeamOfHeroes"
-import {Login} from "./Login"
+import {Header} from "./components/Header" ;
+import {Home} from "./components/Home"
+import {MyTeam} from "./components/MyTeamOfHeroes"
+import {Login} from "./components/Login"
 import React from 'react'
-import {TeamContext} from "./context/teamHeroes";
-import {isAuth} from "./context/isAuth";
-
+import {Provider} from 'react-redux'
+import generateStore from './redux/store'
 function App() {
-  const [team,setTeam]= React.useState([])
-  const [auth,setAuth]= React.useState([])
- 
+
+ const store = generateStore()
   return (
-    <TeamContext.Provider value={{team,setTeam}}>
-      <isAuth.Provider value={{auth,setAuth}}>
-    <div  className="bg-sky App">
+   
+    <div  className="bg-header">
       <Router>
-      
+      <Provider store={store}>
       <Switch>
       <Route path="/" exact>
       <Header/>
@@ -34,10 +31,10 @@ function App() {
             <Login />
           </Route>
       </Switch>
+      </Provider>
       </Router>
     </div>
-    </ isAuth.Provider>
-    </TeamContext.Provider>
+    
   );
 }
 
